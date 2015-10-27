@@ -12,10 +12,10 @@ import sys
 import json
 import movies_name
 
-consumer_key = "xs8aEROib01jaCKYrctKVAyqq"
-consumer_secret = "P92rzVMq4Kx5TArhdntRzqCkNetAGd9nR60GhlRBezTRfBYO5m"
-access_token="1145526739-wpafPpg41vb8c4qOMhYZjocFstZi7l9rXug1Bto"
-access_token_secret="hqJPdYPaliso3MkXoL5twTJkm3oVvcYur3ivSxAxI2E4f"
+consumer_key = "sxs8aEROib01jaCKYrctKVAyqqid"
+consumer_secret = "sP92rzVMq4Kx5TArhdntRzqCkNetAGd9nR60GhlRBezTRfBYO5mid"
+access_token="s1145526739-wpafPpg41vb8c4qOMhYZjocFstZi7l9rXug1Btoid"
+access_token_secret="shqJPdYPaliso3MkXoL5twTJkm3oVvcYur3ivSxAxI2E4fid"
 
 
 def authenticate():
