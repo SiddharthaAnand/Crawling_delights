@@ -46,7 +46,7 @@ def control_board(base_url, store_state_file="" ):
 	ques_no = 1
 	hyperlink_list = []
 	store_state_file = "crawler_state_question_text.txt"
-	directory = "/home/admiin-19/Sid/Crawling_delights/text_dataset/"
+	directory = "/home/admin-19/Sid/Crawling_delights/text_dataset/"
 	#Prefix of the naem of the text data file
 	filename = "question_"
 	fp = file("Taglist.txt", "a+")

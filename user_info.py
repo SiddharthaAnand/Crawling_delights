@@ -19,7 +19,11 @@ def read_q_hyperlinks():
 	g = f.readlines()
 	f.close()
 	hyperlink_list = []
+	count = 0
 	for i in g:
+		count += 1
+		if count < 2000:
+			continue
 		hyperlink_list.append(i.strip())
 	return hyperlink_list
 
@@ -28,7 +32,7 @@ def extract_user_hyperlinks(question_hyperlinks):
 	'''This method takes as input list of hyperlinks of questions on stackoverflow.com
 		and returns the list of userpage hyperlinks.
 	'''
-	f = open("user_hyperlinks.txt", "w")
+	f = open("user_hyperlinks.txt", "a+")
 	user_hyperlink_list = []
 	upvote_list = []
 	request_count = 0
