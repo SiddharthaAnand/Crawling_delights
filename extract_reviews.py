@@ -3,14 +3,14 @@
 import urllib2
 from bs4 import BeautifulSoup
 
-def extract_reviews(current_page, total_pages):
+def extract_reviews(url, current_page, total_pages):
 	start = 0
-	review_no = 113
+	review_no = 296
 	
 	while current_page <= total_pages:
 		
 		
-		absolute_url = "http://www.imdb.com/title/tt0417148/reviews?start=" + str(start)
+		absolute_url = "http://www.imdb.com/title/tt3696192/reviews?start=" + str(start)
 		current_page += 1
 		start += 10
 		print "current_page ", current_page
@@ -41,6 +41,15 @@ def extract_reviews(current_page, total_pages):
 					f.close()
 
 if __name__ == '__main__':
-	extract_reviews(1, 103)
+	#url of the review web page without the number in the end when you click on the first page review
+	url = "http://www.imdb.com/title/tt3696192/reviews?start="
+
+	#total number of pages of review written on the web page, start_page = page from which you want the review
+	#total_pages = page till which you want the review
+	start_page = 1
+	total_pages = 3
+
+	#extact and store in the current directory
+	extract_reviews(url, 1, total_pages)
 
 
