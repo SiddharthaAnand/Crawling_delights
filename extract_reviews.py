@@ -10,7 +10,7 @@ def extract_reviews(url, current_page, total_pages):
 	while current_page <= total_pages:
 		
 		
-		absolute_url = "http://www.imdb.com/title/tt3696192/reviews?start=" + str(start)
+		absolute_url = url + str(start)
 		current_page += 1
 		start += 10
 		print "current_page ", current_page
