@@ -36,13 +36,28 @@ seed_url = "https://dl.acm.org/author_page.cfm?id=81100512920&srt=publicationDat
 base_url = "https://dl.acm.org/author_page.cfm?id="
 query_params = "&srt=publicationDate&role=all&dsp=coll"
 
+# Return a random user-agent
+def get_user_agent():
+	rand_index = random.randint(0, len(user_agent_list) - 1)
+	user_agent = user_agent_list[rand_index]
+	return user_agent
+
+
+def add_coauthor_id(auth_id_tag):
+	coauthor_id_list = []
+	for auth in auth_id_tag:
+		id_index = auth['href'].encode('utf-8').index('id')
+		_id = auth['href'].encode('utf-8')[id_index+3:]
+		coauthor_id_list.append(_id)
+	return coauthor_id_list
+
 def crawl(seed_url, base_url):
 	queue.append(seed_url)
 	visited_urls[seed_url] = 1
 	while(len(queue) != 0):
 		url  = queue.pop(0)
 		print "Sending request to ", url
-		headers['user-agent'] = user_agent_list[random.randint(0, len(user_agent_list))]
+		headers['user-agent'] = get_user_agent()
 
 		page = requests.get(url, headers=headers)
 		print "Received response at ", time.asctime()
@@ -58,12 +73,8 @@ def crawl(seed_url, base_url):
 		print author_name, author_affiliation
 
 		auth_id_tag = soup.findAll('a', attrs={'target': '_self'})
-		coauthor_id_list = []
-		for auth in auth_id_tag:
-			id_index = auth['href'].encode('utf-8').index('id')
-			_id = auth['href'].encode('utf-8')[id_index+3:]
-			coauthor_id_list.append(_id)
-
+		coauthor_id_list = add_coauthor_id(auth_id_tag)
+	
 		for _id in coauthor_id_list:
 			new_url = base_url + _id + query_params
 			if new_url not in visited_urls:
@@ -74,4 +85,5 @@ def crawl(seed_url, base_url):
 
 		time.sleep(random.randint(0, 3))
 		
-crawl(seed_url, base_url)
+if __name__ == '__main__':
+	crawl(seed_url, base_url)
